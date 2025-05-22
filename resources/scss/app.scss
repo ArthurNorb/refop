@@ -1,0 +1,26 @@
+@import "bootstrap/scss/functions";
+
+
+$custom-laranja: #FF6600;
+
+@import "bootstrap/scss/variables";
+$theme-colors: map-merge(
+  $theme-colors, // O mapa original de cores do Bootstrap
+  (
+    "custom-laranja": $custom-laranja,
+  )
+);
+
+@import "bootstrap/scss/bootstrap";
+
+.meu-botao-laranja {
+  @extend .btn; // Herda estilos de botão do Bootstrap
+  background-color: $custom-laranja;
+  border-color: darken($custom-laranja, 10%); // Escurece um pouco a borda
+  color: white;
+
+  &:hover {
+    background-color: darken($custom-laranja, 10%);
+    border-color: darken($custom-laranja, 15%);
+  }
+}
