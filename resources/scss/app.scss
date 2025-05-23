@@ -1,26 +1,63 @@
 @import "bootstrap/scss/functions";
 
 
-$custom-laranja: #FF6600;
+$azul-escuro: #1e3a5f;
+$azul-muito-escuro: #16314a;
+$cinza: #2c3e50;
+$cinza-claro: #3e5870;
+$off-white: #f0f2f5;
 
 @import "bootstrap/scss/variables";
 $theme-colors: map-merge(
   $theme-colors, // O mapa original de cores do Bootstrap
   (
-    "custom-laranja": $custom-laranja,
+    "azul-escuro": $azul-escuro,
+    "azul-muito-escuro": $azul-muito-escuro,
+    "off-white": $off-white,
+    "cinza": $cinza,
+    "cinza-claro": $cinza-claro,
   )
 );
 
-@import "bootstrap/scss/bootstrap";
+.nav-item {
+    .nav-link {
+        transition: background-color 0.3s ease, color 0.3s ease;
 
-.meu-botao-laranja {
-  @extend .btn; // Herda estilos de botão do Bootstrap
-  background-color: $custom-laranja;
-  border-color: darken($custom-laranja, 10%); // Escurece um pouco a borda
-  color: white;
-
-  &:hover {
-    background-color: darken($custom-laranja, 10%);
-    border-color: darken($custom-laranja, 15%);
-  }
+        &:hover {
+            background-color: $cinza-claro;
+        }
+    }
 }
+
+.card {
+    .card-title {
+        a.text-azul-escuro {
+            transition: color 0.3s ease;
+            
+            &:hover {
+                color: $azul-muito-escuro !important;
+            }
+        }
+    }
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease-in-out;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        padding: 1.5rem !important;
+        .card-body {
+            padding: 1.5rem !important;
+            transition: padding 0.3s ease-in-out; 
+        }
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+
+@import "bootstrap/scss/bootstrap";
