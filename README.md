@@ -43,8 +43,8 @@ Siga os passos abaixo para colocar o projeto em funcionamento em sua máquina lo
 Primeiro, clone o repositório do GitHub para o seu ambiente local:
 
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
-cd refop-website # ou o nome da pasta do seu projetoEu entendi o problema! O formato de Markdown que eu estava usando para o Bash fazia com que o bloco de código se estendesse demais.
+git clone https://github.com/ArthurNorb/refop
+cd refop-site
 ```
 
 ## 2. Instalar Dependências PHP
