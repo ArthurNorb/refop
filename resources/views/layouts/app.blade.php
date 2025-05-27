@@ -19,7 +19,7 @@
 
 <body class="d-flex flex-column min-vh-100 bg-off-white">
 
-    <header class="bg-azul-escuro text-light py-3 px-5">
+    <header class="bg-azul-escuro text-light pt-3 px-5">
         <div class="d-flex align-items-center justify-content-start">
             <img src="img/LogoREFOP.png" alt="REFOP" style="width: 8rem; height: auto; margin-right: 1rem">
             <div>
@@ -36,10 +36,9 @@
                 </form>
             </div>
         </div>
-    </header>
 
-    <nav>
-        <ul class="nav justify-content-center bg-cinza m-0">
+        <nav>
+        <ul class="nav justify-content-center m-0">
             <li class="nav-item ">
                 <a class="nav-link text-white p-3" href="{{ url('/') }}">Início</a>
             </li>
@@ -60,6 +59,7 @@
             </li>
         </ul>
     </nav>
+    </header>
 
     <main class="h-100">
         <div class="w-50 mx-auto">

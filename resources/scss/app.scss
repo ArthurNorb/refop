@@ -3,8 +3,7 @@
 
 $azul-escuro: #2A4F5D;
 $azul-muito-escuro: #1a323a;
-$cinza: #2c3e50;
-$cinza-claro: #3e5870;
+$azul-pouco-claro: #3a6e81;
 $off-white: #f0f2f5;
 
 @import "bootstrap/scss/variables";
@@ -13,9 +12,8 @@ $theme-colors: map-merge(
   (
     "azul-escuro": $azul-escuro,
     "azul-muito-escuro": $azul-muito-escuro,
+    "azul-pouco-claro": $azul-pouco-claro,
     "off-white": $off-white,
-    "cinza": $cinza,
-    "cinza-claro": $cinza-claro,
   )
 );
 
@@ -24,7 +22,7 @@ $theme-colors: map-merge(
         transition: background-color 0.3s ease, color 0.3s ease;
 
         &:hover {
-            background-color: $cinza-claro;
+            background-color: $azul-pouco-claro;
         }
     }
 }
