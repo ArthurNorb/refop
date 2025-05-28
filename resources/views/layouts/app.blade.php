@@ -11,10 +11,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="img/LogoREFOP.png">
 
     {{-- Styles / Scripts --}}
     <link rel="stylesheet" href="{{ asset('css/background.css') }}">
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-off-white">
@@ -23,7 +31,7 @@
         <div class="d-flex align-items-center justify-content-start">
             <img src="img/LogoREFOP.png" alt="REFOP" style="width: 8rem; height: auto; margin-right: 1rem">
             <div>
-                <h1>REFOP</h1>
+                <img src="img/REFOP.png" alt="REFOP" style="width: 10rem; height: auto; margin-right: 1rem">
                 <p>Associação das Repúblicas Federais de Ouro Preto</p>
             </div>
 
@@ -38,27 +46,27 @@
         </div>
 
         <nav>
-        <ul class="nav justify-content-center m-0">
-            <li class="nav-item ">
-                <a class="nav-link text-white p-3" href="{{ url('/') }}">Início</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white p-3" href="{{ url('/sobre') }}">Sobre</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white p-3" href="{{ url('/republicas') }}">Repúblicas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white p-3" href="{{ url('/eventos') }}">Eventos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white p-3" href="{{ url('/galeria') }}">Galeria</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white p-3" href="{{ url('/contato') }}">Contato</a>
-            </li>
-        </ul>
-    </nav>
+            <ul class="nav justify-content-center m-0">
+                <li class="nav-item ">
+                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/') }}">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/sobre') }}">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/republicas') }}">Repúblicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/eventos') }}">Eventos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/galeria') }}">Galeria</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/contato') }}">Contato</a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main class="h-100">
@@ -67,9 +75,8 @@
         </div>
     </main>
 
-    <div id="igreja-decorativa-fundo"></div>
-
     <footer class="footer mt-auto py-3 bg-azul-escuro">
+        <div id="igreja-decorativa-fundo"></div>
         <div class="container text-center">
             <span class="text-light">&copy; {{ date('Y') }} REFOP. Todos os direitos
                 reservados.</span>
