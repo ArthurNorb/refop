@@ -47,23 +47,29 @@
 
         <nav>
             <ul class="nav justify-content-center m-0">
-                <li class="nav-item ">
-                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/') }}">Início</a>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('/') ? 'active' : '' }}"
+                        href="{{ url('/') }}">Início</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/sobre') }}">Sobre</a>
+                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('sobre') ? 'active' : '' }}"
+                        href="{{ url('/sobre') }}">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/republicas') }}">Repúblicas</a>
+                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('republicas*') ? 'active' : '' }}"
+                        href="{{ url('/republicas') }}">Repúblicas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/eventos') }}">Eventos</a>
+                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('eventos*') ? 'active' : '' }}"
+                        href="{{ url('/eventos') }}">Eventos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/galeria') }}">Galeria</a>
+                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('galeria*') ? 'active' : '' }}"
+                        href="{{ url('/galeria') }}">Galeria</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold" href="{{ url('/contato') }}">Contato</a>
+                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('contato') ? 'active' : '' }}"
+                        href="{{ url('/contato') }}">Contato</a>
                 </li>
             </ul>
         </nav>

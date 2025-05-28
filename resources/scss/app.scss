@@ -5,24 +5,23 @@ $azul-escuro: #2A4F5D;
 $azul-muito-escuro: #1a323a;
 $azul-pouco-claro: #3a6e81;
 $off-white: #f0f2f5;
-$font-weight-bold: 700 !default;
+$white: #fff;
 
 @import "bootstrap/scss/variables";
-$theme-colors: map-merge(
-  $theme-colors, // O mapa original de cores do Bootstrap
-  (
-    "azul-escuro": $azul-escuro,
-    "azul-muito-escuro": $azul-muito-escuro,
-    "azul-pouco-claro": $azul-pouco-claro,
-    "off-white": $off-white,
-  )
-);
+$theme-colors: map-merge($theme-colors, // O mapa original de cores do Bootstrap
+        ("azul-escuro": $azul-escuro,
+            "azul-muito-escuro": $azul-muito-escuro,
+            "azul-pouco-claro": $azul-pouco-claro,
+            "off-white": $off-white,
+            "white": $white,
+        ));
 
 .nav-item {
     .nav-link {
         transition: background-color 0.3s ease, color 0.3s ease;
 
-        &:hover {
+        &:hover,
+        &.active {
             background-color: $azul-pouco-claro;
         }
     }
@@ -32,7 +31,7 @@ $theme-colors: map-merge(
     .card-title {
         a.text-azul-escuro {
             transition: color 0.3s ease;
-            
+
             &:hover {
                 color: $azul-muito-escuro !important;
             }
@@ -42,7 +41,7 @@ $theme-colors: map-merge(
 
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease-in-out;
-    
+
     &:hover {
         transform: translatey(-5px);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
