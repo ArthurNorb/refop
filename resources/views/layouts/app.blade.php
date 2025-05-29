@@ -1,9 +1,10 @@
-<!DOCTYPE html> {{-- xupa upa --}}
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', config('app.name', 'REFOP'))</title>
 
@@ -13,83 +14,92 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="img/LogoREFOP.png">
 
-    {{-- Styles / Scripts --}}
-    <link rel="stylesheet" href="{{ asset('css/background.css') }}">
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
-
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    @livewireStyles
 </head>
 
-<body class="d-flex flex-column min-vh-100 bg-off-white">
+<body class="flex flex-col min-h-screen bg-offWhite font-montserrat antialiased">
+    <header class="bg-refop text-slate-100 pt-3 px-5 shadow-md">
+        <div class="container mx-auto">
+            <div class="flex flex-col sm:flex-row items-center justify-between pb-3"> 
+                <div class="flex items-center">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('img/LogoREFOP.png') }}" alt="REFOP Logo" class="w-24 md:w-32 h-auto mr-4">
+                    </a>
+                    <div>
+                        <a href="{{ url('/') }}">
+                            <img src="{{ asset('img/REFOP.png') }}" alt="REFOP Nome" class="w-32 md:w-40 h-auto mb-1">
+                        </a>
+                        <p class="text-xs sm:text-sm">Associação das Repúblicas Federais de Ouro Preto</p>
+                    </div>
+                </div>
 
-    <header class="bg-azul-escuro text-light pt-3 px-5">
-        <div class="d-flex align-items-center justify-content-start">
-            <img src="img/LogoREFOP.png" alt="REFOP" style="width: 8rem; height: auto; margin-right: 1rem">
-            <div>
-                <img src="img/REFOP.png" alt="REFOP" style="width: 10rem; height: auto; margin-right: 1rem">
-                <p>Associação das Repúblicas Federais de Ouro Preto</p>
+                <div class="w-full sm:w-auto mt-4 sm:mt-0 sm:ml-auto md:w-1/3 lg:w-1/4">
+                    <form class="flex" role="search">
+                        <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded-l-md py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-slate-500 placeholder-gray-400" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                        <button class="px-4 py-2 border-t border-b border-r border-white text-white bg-refop hover:bg-refopClaro rounded-r-md transition duration-150" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <div class="ms-auto w-25">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                    <button class="btn btn-outline-light" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-            </div>
+            <nav>
+                <ul class="flex flex-wrap justify-center list-none p-0 m-0">
+                    <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('/') ? 'bg-refopClaro' : '' }}"
+                           href="{{ url('/') }}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
+                           href="{{ url('/sobre') }}">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('republicas') ? 'bg-refopClaro' : '' }}"
+                           href="{{ url('/republicas') }}">Repúblicas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('eventos') ? 'bg-refopClaro' : '' }}"
+                           href="{{ url('/eventos') }}">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('galeria') ? 'bg-refopClaro' : '' }}"
+                           href="{{ url('/galeria') }}">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('contato') ? 'bg-refopClaro' : '' }}"
+                           href="{{ url('/contato') }}">Contato</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-        <nav>
-            <ul class="nav justify-content-center m-0">
-                <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('/') ? 'active' : '' }}"
-                        href="{{ url('/') }}">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('sobre') ? 'active' : '' }}"
-                        href="{{ url('/sobre') }}">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('republicas*') ? 'active' : '' }}"
-                        href="{{ url('/republicas') }}">Repúblicas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('eventos*') ? 'active' : '' }}"
-                        href="{{ url('/eventos') }}">Eventos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('galeria*') ? 'active' : '' }}"
-                        href="{{ url('/galeria') }}">Galeria</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white p-3 fw-semibold {{ Request::is('contato') ? 'active' : '' }}"
-                        href="{{ url('/contato') }}">Contato</a>
-                </li>
-            </ul>
-        </nav>
     </header>
 
-    <main class="h-100">
-        <div class="w-50 mx-auto">
+    <main class="flex-grow py-8">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             @yield('content')
         </div>
     </main>
 
-    <footer class="footer mt-auto py-3 bg-azul-escuro">
+    <footer class="mt-auto py-4 bg-refop text-offWhite">
         <div id="igreja-decorativa-fundo"></div>
-        <div class="container text-center">
-            <span class="text-light">&copy; {{ date('Y') }} REFOP. Todos os direitos
-                reservados.</span>
+        <div class="container mx-auto text-center px-4">
+            <span class="">&copy; {{ date('Y') }} REFOP. Todos os direitos reservados.</span>
         </div>
     </footer>
 
     @stack('scripts')
+
+    @livewireScripts 
 </body>
 
 </html>
