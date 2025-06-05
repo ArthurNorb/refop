@@ -18,9 +18,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        // Este método simplesmente retorna a view que contém o formulário de criação.
-        // Vamos assumir que a view se chama 'admin.users.create'.
-        // Você precisará criar esta view na pasta resources/views/admin/users/
         return view('admin.users.create');
     }
 
@@ -32,7 +29,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // Validação dos dados do formulário
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Garante que o email seja único na tabela 'users'
@@ -40,7 +36,6 @@ class UserController extends Controller
             'is_admin' => ['nullable', 'boolean'], // Permite que o admin defina se o novo usuário é admin (opcional no formulário)
         ]);
 
-        // Criação do usuário
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -51,5 +46,10 @@ class UserController extends Controller
 
         return redirect('/')
             ->with('success', 'Usuário criado com sucesso!');
+    }
+
+    public function gerenciarUsuarios() {
+        $users = User::orderBy('name')->paginate(10);
+        return view('admin.users.gerenciar-usuarios', compact('users'));
     }
 }

@@ -28,11 +28,11 @@ Route::get('/contato', function () {
     return view('contato');
 });
 
-Route::get('/cadastrar-usuario', [AdminUserController::class, 'create'])
-    ->middleware(['auth', EnsureUserIsAdmin::class]) // << USANDO A CLASSE DIRETAMENTE
-    ->name('admin.user.create_form');
+Route::get('/cadastrar-usuario', [AdminUserController::class, 'create'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.user.create_form');
 
-Route::post('/admin/users', [AdminUserController::class, 'store'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.users.store'); 
+Route::post('/admin/users', [AdminUserController::class, 'store'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.users.store');
+
+Route::get('/gerenciar-usuarios', [AdminUserController::class, 'gerenciarUsuarios'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.users.gerenciar-usuarios');
 
 Route::middleware([
     'auth:sanctum',

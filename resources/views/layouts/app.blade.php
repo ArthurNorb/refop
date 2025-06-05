@@ -35,8 +35,8 @@
                     <ul class="flex flex-row gap-2 justify-end text-sm text-slate-400">
                         @if (Auth::user()->isAdmin())
                             <li>
-                                <a href="{{ route('admin.user.create_form') }}" class=" hover:text-white">
-                                    Cadastrar usuário
+                                <a href="{{ route('admin.users.gerenciar-usuarios') }}" class=" hover:text-white">
+                                    Gerenciar usuários
                                 </a>
                             </li>
                         @endif
