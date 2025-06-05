@@ -1,0 +1,36 @@
+[90m= [39m[34;4mApp\Models\User[39;24m {#6548
+    [34mid[39m: [35m1[39m,
+    [34mname[39m: "[32mAdministrador[39m",
+    [34memail[39m: "[32madmin@refop.com[39m",
+    [34mis_admin[39m: [35m0[39m,
+    [34memail_verified_at[39m: "[32m2025-06-03 12:28:11[39m",
+    #[33mpassword[39m: "[32m$2y$12$k//7CWwY2yinfRuSwxlISuD5uVh1O72QrE2Weq4p/6AC4Xkw01hFO[39m",
+    #[33mtwo_factor_secret[39m: [36mnull[39m,
+    #[33mtwo_factor_recovery_codes[39m: [36mnull[39m,
+    [34mtwo_factor_confirmed_at[39m: [36mnull[39m,
+    #[33mremember_token[39m: "[32myZTWOswcHj5EKt3tJFalp4mkiTbEeKIRstgKxlkG0fY5IfE0ZMyMWrJ4lpCM[39m",
+    [34mcurrent_team_id[39m: [36mnull[39m,
+    [34mprofile_photo_path[39m: [36mnull[39m,
+    [34mcreated_at[39m: "[32m2025-06-03 12:28:11[39m",
+    [34mupdated_at[39m: "[32m2025-06-03 12:28:11[39m",
+    +[1mprofile_photo_url[22m: "[32mhttps://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF[39m",
+  }
+
+[90m= [39m[34;4mApp\Models\User[39;24m {#6548
+    [34mid[39m: [35m1[39m,
+    [34mname[39m: "[32mAdministrador[39m",
+    [34memail[39m: "[32madmin@refop.com[39m",
+    [34mis_admin[39m: [35m0[39m,
+    [34memail_verified_at[39m: "[32m2025-06-03 12:28:11[39m",
+    #[33mpassword[39m: "[32m$2y$12$k//7CWwY2yinfRuSwxlISuD5uVh1O72QrE2Weq4p/6AC4Xkw01hFO[39m",
+    #[33mtwo_factor_secret[39m: [36mnull[39m,
+    #[33mtwo_factor_recovery_codes[39m: [36mnull[39m,
+    [34mtwo_factor_confirmed_at[39m: [36mnull[39m,
+    #[33mremember_token[39m: "[32mQcDt6p8LshnummnkpqYBOMF2ImdiXJNpHBTscYOtuKKnE1HJyaNmEPKG9fdb[39m",
+    [34mcurrent_team_id[39m: [36mnull[39m,
+    [34mprofile_photo_path[39m: [36mnull[39m,
+    [34mcreated_at[39m: "[32m2025-06-03 12:28:11[39m",
+    [34mupdated_at[39m: "[32m2025-06-03 12:28:11[39m",
+    +[1mprofile_photo_url[22m: "[32mhttps://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF[39m",
+  }
+

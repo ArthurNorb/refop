@@ -123,4 +123,49 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+     /*
+    |--------------------------------------------------------------------------
+    | Autoloaded Service Providers
+    |--------------------------------------------------------------------------
+    |
+    | The service providers listed here will be automatically loaded on the
+    | request to your application. Feel free to add your own services to
+    | this array to grant expanded functionality to your applications.
+    |
+    */
+
+    'providers' => Illuminate\Support\ServiceProvider::defaultProviders()->merge([
+        /*
+         * Package Service Providers...
+         */
+
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class, // Mantenha comentado se não estiver usando
+        App\Providers\EventServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,   // Essencial para Jetstream/Fortify
+        App\Providers\JetstreamServiceProvider::class, // Essencial para Jetstream
+        App\Providers\RouteServiceProvider::class,   // Essencial, especialmente após recriá-lo
+        // Adicione quaisquer outros provedores de serviço da sua aplicação aqui
+
+    ])->toArray(),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Class Aliases
+    |--------------------------------------------------------------------------
+    |
+    | This array of class aliases will be registered when this application
+    | is started. However, feel free to register as many as you wish as
+    | the aliases are "lazy" loaded so they don't hinder performance.
+    |
+    */
+
+    'aliases' => Illuminate\Support\Facades\Facade::defaultAliases()->merge([
+        // 'Example' => App\Facades\Example::class,
+        // Adicione seus aliases customizados aqui, se tiver
+    ])->toArray(),
 ];
