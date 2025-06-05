@@ -28,11 +28,22 @@ Route::get('/contato', function () {
     return view('contato');
 });
 
-Route::get('/cadastrar-usuario', [AdminUserController::class, 'create'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.user.create_form');
+Route::middleware(['auth', EnsureUserIsAdmin::class])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/users/create', [AdminUserController::class, 'create'])->name('users.create');
+        Route::post('/users', [AdminUserController::class, 'store'])->name('users.store');
+        Route::get('/gerenciar-usuarios', [AdminUserController::class, 'index'])->name('users.index'); 
+        Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
 
-Route::post('/admin/users', [AdminUserController::class, 'store'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.users.store');
+        // Se tiver uma rota para exibir um usuário específico (show)
+        // Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
 
-Route::get('/gerenciar-usuarios', [AdminUserController::class, 'gerenciarUsuarios'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.users.gerenciar-usuarios');
+        // Se tiver rotas para editar e atualizar um usuário
+        // Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+        // Route::put('/users/{user}', [AdminUserController::class, 'update'])->name('users.update'); // Ou PATCH
+    });
 
 Route::middleware([
     'auth:sanctum',

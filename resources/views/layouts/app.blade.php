@@ -35,7 +35,7 @@
                     <ul class="flex flex-row gap-2 justify-end text-sm text-slate-400">
                         @if (Auth::user()->isAdmin())
                             <li>
-                                <a href="{{ route('admin.users.gerenciar-usuarios') }}" class=" hover:text-white">
+                                <a href="{{ route('admin.users.index') }}" class=" hover:text-white">
                                     Gerenciar usuários
                                 </a>
                             </li>

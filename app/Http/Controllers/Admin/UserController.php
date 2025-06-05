@@ -48,8 +48,23 @@ class UserController extends Controller
             ->with('success', 'Usuário criado com sucesso!');
     }
 
-    public function gerenciarUsuarios() {
-        $users = User::orderBy('name')->paginate(10);
+    public function index()
+    {
+        $users = User::orderBy('id')->paginate(10);
         return view('admin.users.gerenciar-usuarios', compact('users'));
+    }
+
+    public function destroy(User $user)
+    {
+        if (Auth::id() === $user->id) {
+            return redirect()->route('admin.users.index')
+                ->with('error', 'Você não pode deletar sua própria conta de administrador!');
+        }
+
+        $userName = $user->name;
+        $user->delete();
+
+        return redirect()->route('admin.users.index')
+            ->with('success', "Usuário '{$userName}' deletado com sucesso!");
     }
 }
