@@ -13,7 +13,7 @@
                 </h1>
 
                 <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-                    <a href="{{ url()->previous() }}"
+                    <a href="{{ url('/') }}"
                         class="inline-flex items-center px-4 py-2 bg-white border border-refop rounded-md font-semibold text-xs text-refop uppercase tracking-widest hover:bg-refop hover:text-white active:bg-refop focus:outline-none focus:border-refop focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
