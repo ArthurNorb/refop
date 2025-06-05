@@ -75,7 +75,7 @@
                                             {{ $user->id }}
                                         </td>
                                         <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $user->name }}
+                                            <a href="{{ route('admin.users.show', $user) }}" class="hover:text-blue-600 underline">{{ $user->name }}</a>
                                         </td>
                                         <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $user->email }}

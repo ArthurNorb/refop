@@ -36,9 +36,7 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])
         Route::post('/users', [AdminUserController::class, 'store'])->name('users.store');
         Route::get('/gerenciar-usuarios', [AdminUserController::class, 'index'])->name('users.index'); 
         Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
-
-        // Se tiver uma rota para exibir um usuário específico (show)
-        // Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
+        Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
 
         // Se tiver rotas para editar e atualizar um usuário
         // Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');

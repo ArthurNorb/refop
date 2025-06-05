@@ -67,4 +67,9 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')
             ->with('success', "Usuário '{$userName}' deletado com sucesso!");
     }
+
+    public function show(User $user)
+    {
+        return view('admin.users.show', compact('user'));
+    }
 }
