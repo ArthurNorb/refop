@@ -32,7 +32,7 @@ Route::get('/cadastrar-usuario', [AdminUserController::class, 'create'])
     ->middleware(['auth', EnsureUserIsAdmin::class]) // << USANDO A CLASSE DIRETAMENTE
     ->name('admin.user.create_form');
 
-Route::post('/admin/users', [AdminUserController::class, 'store'])->middleware(['auth', 'admin'])->name('admin.users.store'); 
+Route::post('/admin/users', [AdminUserController::class, 'store'])->middleware(['auth', EnsureUserIsAdmin::class])->name('admin.users.store'); 
 
 Route::middleware([
     'auth:sanctum',

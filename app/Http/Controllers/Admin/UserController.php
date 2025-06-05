@@ -49,7 +49,7 @@ class UserController extends Controller
             'email_verified_at' => now(), // Opcional: marcar o email como verificado automaticamente
         ]);
 
-        return redirect()->route('admin.user.index')
-                         ->with('success', 'Usuário criado com sucesso!');
+        return redirect('/')
+            ->with('success', 'Usuário criado com sucesso!');
     }
 }
