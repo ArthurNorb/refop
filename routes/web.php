@@ -37,10 +37,8 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])
         Route::get('/gerenciar-usuarios', [AdminUserController::class, 'index'])->name('users.index'); 
         Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
         Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
-
-        // Se tiver rotas para editar e atualizar um usuário
-        // Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
-        // Route::put('/users/{user}', [AdminUserController::class, 'update'])->name('users.update'); // Ou PATCH
+        Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
     });
 
 Route::middleware([

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Para criptografar a senha
 use Illuminate\Validation\Rules;     // Para regras de validação (ex: Password::defaults())
 use Illuminate\Support\Facades\Auth; // Para verificar o usuário autenticado, se necessário
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -71,5 +72,35 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('admin.users.show', compact('user'));
+    }
+
+    public function edit(User $user)
+    {
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        // 1. Validação dos dados
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()], 
+            'is_admin' => ['nullable', 'boolean'],
+        ]);
+
+        $updateData = [
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'is_admin' => $request->boolean('is_admin'),
+        ];
+
+        if (!empty($validatedData['password'])) {
+            $updateData['password'] = Hash::make($validatedData['password']);
+        }
+
+        $user->update($updateData);
+
+        return redirect()->route('admin.users.index') ->with('success', "Dados do usuário '{$user->name}' atualizados com sucesso!");
     }
 }

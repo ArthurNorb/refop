@@ -61,11 +61,11 @@
             <div class="flex flex-col sm:flex-row items-center justify-between pb-3">
                 <div class="flex items-center">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('img/LogoREFOP.png') }}" alt="REFOP Logo" class="w-24 md:w-32 h-auto mr-4">
+                        <img src="{{ asset('img/LogoREFOP.png') }}" alt="REFOP Logo" class="w-20 md:w-24 h-auto mr-4">
                     </a>
                     <div>
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset('img/REFOP.png') }}" alt="REFOP Nome" class="w-32 md:w-40 h-auto mb-1">
+                            <img src="{{ asset('img/REFOP.png') }}" alt="REFOP Nome" class="w-24 md:w-32 h-auto mb-1">
                         </a>
                         <p class="text-xs sm:text-sm">Associação das Repúblicas Federais de Ouro Preto</p>
                     </div>

@@ -8,7 +8,7 @@
             </div>
             <div class="w-full sm:max-w-2xl mt-6 px-6 py-8 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <h1 class="text-2xl font-bold text-center text-gray-800 mb-8">
-                    Detalhes do Usuário
+                    Detalhes do usuário: {{ $user->name }}
                 </h1>
 
                 <div class="space-y-4">
@@ -43,7 +43,7 @@
                     </a>
                     
                     <div class="flex gap-3">
-                        <a href="#"
+                        <a href="{{ route('admin.users.edit', $user) }}"
                            class="inline-flex items-center px-4 py-2 bg-white border border-refop rounded-md font-semibold text-xs text-refop uppercase tracking-widest hover:bg-refop hover:text-white active:bg-refop focus:outline-none focus:border-refop focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                            Editar
                         </a>

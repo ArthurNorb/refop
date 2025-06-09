@@ -53,10 +53,6 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Criado em
-                                </th>
-                                <th
-                                    class="px-5 py-3 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Ações
                                 </th>
                             </tr>
@@ -86,12 +82,9 @@
                                                 {{ $user->isAdmin() ? 'Sim' : 'Não' }}
                                             </span>
                                         </td>
-                                        <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            {{ $user->created_at ? $user->created_at->format('d/m/Y H:i') : 'N/A' }}
-                                        </td>
                                         <td
                                             class="px-5 py-4 whitespace-nowrap text-sm font-medium text-right flex flex-row">
-                                            <a href="#" class="text-slate-600 hover:text-blue-700"><svg
+                                            <a href="{{ route('admin.users.edit', $user) }}" class="text-slate-600 hover:text-blue-700"><svg
                                                     xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                     class="size-6">
