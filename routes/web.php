@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
@@ -25,10 +26,6 @@ Route::get('/galeria', function () {
     return view('galeria');
 });
 
-Route::get('/contato', function () {
-    return view('contato');
-});
-
 //rotas admin
 Route::middleware(['auth', EnsureUserIsAdmin::class])
     ->prefix('admin')
@@ -47,6 +44,10 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])
 Route::get('/editar-perfil', [UserProfileController::class, 'edit'])->middleware('auth')->name('editar-perfil');
 Route::get('/meu-perfil', [UserProfileController::class, 'show'])->middleware('auth')->name('meu-perfil');
 Route::put('/perfil/atualizar', [UserProfileController::class, 'update'])->middleware('auth')->name('perfil.update');
+
+// Rotas contato
+Route::get('/contato', [ContactController::class, 'show'])->name('contato.show');
+Route::post('/contato', [ContactController::class, 'send'])->name('contato.send');
 
 Route::middleware([
     'auth:sanctum',
