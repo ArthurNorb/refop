@@ -39,12 +39,14 @@
                                     Gerenciar usuários
                                 </a>
                             </li>
+                            |
                         @endif
                         <li>
-                            <a href="{{ route('profile.show') }}" class=" hover:text-white">
-                                Editar perfil
+                            <a href="{{ route('meu-perfil') }}" class=" hover:text-white">
+                                Meu perfil
                             </a>
                         </li>
+                        |
                         <li>
                             <form method="POST" action="{{ route('logout') }}" class="inline">
                                 @csrf
