@@ -13,9 +13,20 @@ class RepublicasController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('republicas.index');
+        $query = Republica::query();
+
+        if ($request->filled('genero')) {
+            $query->where('genero', $request->genero);
+        }
+
+        $republicas = $query->orderBy('nome')->get();
+
+        return view('republicas.index', [
+            'republicas' => $republicas,
+            'filtroGenero' => $request->genero,
+        ]);
     }
 
     /**
