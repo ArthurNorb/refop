@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RepublicasController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
@@ -14,10 +15,6 @@ Route::get('/sobre', function () {
     return view('sobre');
 });
 
-Route::get('/republicas', function () {
-    return view('republicas');
-});
-
 Route::get('/eventos', function () {
     return view('eventos');
 });
@@ -26,7 +23,6 @@ Route::get('/galeria', function () {
     return view('galeria');
 });
 
-//rotas admin
 Route::middleware(['auth', EnsureUserIsAdmin::class])
     ->prefix('admin')
     ->name('admin.')
@@ -40,14 +36,26 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])
         Route::put('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
     });
 
-// Rotas perfil
 Route::get('/editar-perfil', [UserProfileController::class, 'edit'])->middleware('auth')->name('editar-perfil');
 Route::get('/meu-perfil', [UserProfileController::class, 'show'])->middleware('auth')->name('meu-perfil');
 Route::put('/perfil/atualizar', [UserProfileController::class, 'update'])->middleware('auth')->name('perfil.update');
 
-// Rotas contato
 Route::get('/contato', [ContactController::class, 'show'])->name('contato.show');
 Route::post('/contato', [ContactController::class, 'send'])->name('contato.send');
+
+Route::middleware(['auth', EnsureUserIsAdmin::class])
+    ->prefix('republicas')
+    ->name('republicas.')
+    ->group(function () {
+        Route::get('/adicionar', [RepublicasController::class, 'create'])->name('create');
+        Route::post('/', [RepublicasController::class, 'store'])->name('store');
+        Route::get('/{republica}/editar', [RepublicasController::class, 'edit'])->name('edit');
+        Route::put('/{republica}', [RepublicasController::class, 'update'])->name('update');
+        Route::delete('/{republica}', [RepublicasController::class, 'destroy'])->name('delete');
+    });
+
+Route::get('/republicas', [RepublicasController::class, 'index'])->name('republicas.index');
+Route::get('/republicas/{republica}', [RepublicasController::class, 'show'])->name('republicas.show');
 
 Route::middleware([
     'auth:sanctum',

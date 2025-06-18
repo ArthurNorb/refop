@@ -28,7 +28,7 @@ class ContactController extends Controller
 
         // 2. Envio do E-mail
         // O destinatário final. Por enquanto, seu email para teste.
-        $recipientEmail = 'arthurnorberto4@gmail.com'; 
+        $recipientEmail = 'refop@ufop.edu.br'; 
         
         Mail::to($recipientEmail)->send(new ContactFormMail($data));
 
