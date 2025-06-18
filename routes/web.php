@@ -52,6 +52,7 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])
         Route::get('/{republica}/editar', [RepublicasController::class, 'edit'])->name('edit');
         Route::put('/{republica}', [RepublicasController::class, 'update'])->name('update');
         Route::delete('/{republica}', [RepublicasController::class, 'destroy'])->name('delete');
+        Route::delete('/fotos/{foto}', [RepublicasController::class, 'destroyFoto'])->name('fotos.destroy');
     });
 
 Route::get('/republicas', [RepublicasController::class, 'index'])->name('republicas.index');
