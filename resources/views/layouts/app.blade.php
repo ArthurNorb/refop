@@ -22,8 +22,10 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 
     <!-- Styles -->
+    @stack('styles')
     @livewireStyles
 </head>
 
@@ -95,7 +97,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
-                            href="{{ url('/sobre') }}">Sobre</a>
+                            href="{{ route('sobre.show') }}">Sobre</a>
                     </li>
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('republicas') ? 'bg-refopClaro' : '' }}"
@@ -130,7 +132,7 @@
             <span class="">&copy; {{ date('Y') }} REFOP. Todos os direitos reservados.</span>
         </div>
     </footer>
-
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     @stack('scripts')
 
     @livewireScripts

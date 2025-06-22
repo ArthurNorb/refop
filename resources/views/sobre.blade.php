@@ -1,69 +1,127 @@
+{{-- resources/views/sobre.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'REFOP - Sobre')
 
 @section('content')
 
-    <div class="bg-white p-6 sm:p-8 rounded-lg shadow-xl mb-8 text-refopEscuro">
-        <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center sm:text-left">
-            Sobre a REFOP: Tradição, União e Compromisso em Ouro Preto
-        </h2>
-        <p class="text-base leading-relaxed mb-6">
-            A REFOP (Associação das Repúblicas Federais de Ouro Preto) é uma entidade fundamental na vida estudantil e
-            social de Ouro Preto, representando o conjunto das repúblicas estudantis federais da Universidade Federal de
-            Ouro Preto (UFOP). Com uma história rica e entrelaçada com a própria tradição universitária da cidade, a REFOP
-            desempenha múltiplos papéis que transcendem a simples moradia estudantil.
-        </p>
-        <h4 class="text-xl sm:text-2xl font-semibold text-refop mt-8 mb-4">
-            Para a Comunidade Republicana:
-        </h4>
-        <p class="text-base leading-relaxed mb-6">
-            A REFOP é o principal órgão de organização, representação e defesa dos interesses das repúblicas federais e de
-            seus moradores. Ela atua na mediação de questões junto à UFOP, zela pela preservação do patrimônio físico e
-            imaterial das repúblicas e promove a integração entre as diversas casas. Historicamente, as repúblicas são
-            espaços de aprendizado, convivência, desenvolvimento de autonomia e responsabilidade, e a REFOP busca fortalecer
-            esses valores, auxiliando na manutenção dessa forma singular de moradia e vida comunitária que é marca
-            registrada de Ouro Preto. Além disso, a associação trabalha para manter viva a cultura e as tradições
-            republicanas, que são passadas de geração em geração de estudantes.
-        </p>
-        <h4 class="text-xl sm:text-2xl font-semibold text-refop mt-8 mb-4">
-            Para a Comunidade Ouropretana:
-        </h4>
-        <p class="text-base leading-relaxed mb-6">
-            A relação da REFOP e das repúblicas com a comunidade local é de crescente importância. Embora tradicionalmente
-            as repúblicas tenham tido um convívio mais interno, a REFOP tem se empenhado em estreitar os laços com os
-            cidadãos ouropretanos. Isso se manifesta através de diversas iniciativas que buscam um impacto positivo na
-            cidade. As repúblicas, por meio da REFOP, participam ativamente de projetos sociais, culturais e de
-            conscientização, como campanhas de saúde (a exemplo de ações durante a pandemia de COVID-19) e eventos que abrem
-            as portas das repúblicas para a comunidade. O objetivo é desmistificar a vida republicana e promover uma
-            convivência harmoniosa e colaborativa com os moradores da cidade.
-        </p>
-        <h4 class="text-xl sm:text-2xl font-semibold text-refop mt-8 mb-4">
-            Relação com a UFOP, Estudantes e Atos Solidários:
-        </h4>
-        <p class="text-base leading-relaxed mb-4">
-            A REFOP é um elo vital entre os estudantes moradores de repúblicas federais e a Universidade Federal de Ouro
-            Preto. Ela facilita a comunicação, auxilia na resolução de questões administrativas e colabora em projetos
-            institucionais. Para os estudantes, especialmente os calouros, a REFOP e as repúblicas oferecem não apenas
-            moradia, mas um sistema de acolhimento, suporte e uma experiência de vida única.
-        </p>
-        <p class="text-base leading-relaxed mb-6">
-            Um dos pilares da atuação da REFOP é a promoção de atos solidários. Em parceria com outras associações, como a
-            ARROP (Associação das Repúblicas Reunidas de Ouro Preto), a REFOP organiza anualmente a "Ação Solidária". Neste
-            evento, os estudantes, com destaque para os calouros, percorrem os bairros de Ouro Preto arrecadando alimentos
-            não perecíveis, roupas, produtos de higiene, brinquedos e outros donativos que são destinados a instituições de
-            caridade e famílias em vulnerabilidade social no município e em cidades vizinhas, como Mariana. Essas ações não
-            apenas suprem necessidades materiais, mas também promovem a integração dos novos estudantes com a realidade
-            local, incentivam o espírito de solidariedade e demonstram o compromisso social da comunidade republicana.
-            Projetos como "Universidade Desce o Morro" e parcerias em campanhas como "Fios de Solidariedade" também
-            exemplificam essa vertente, buscando levar cultura, arte, lazer e apoio à comunidade.
-        </p>
-        <p class="text-base leading-relaxed">
-            Em suma, a REFOP é mais do que uma associação de moradias; é uma guardiã da tradição republicana, uma voz ativa
-            dos estudantes e uma força promotora de integração e solidariedade em Ouro Preto, buscando sempre retribuir à
-            comunidade o que lhe é oferecido e fortalecer os laços entre a universidade e a cidade.
-        </p>
+    {{-- Área de visualização do conteúdo --}}
+    <div id="view-content" class="bg-white p-6 sm:p-8 rounded-lg shadow-xl mb-8">
+        {{-- A classe "prose" aplica todos os estilos.
+         "max-w-none" remove a restrição de largura padrão do prose.
+         "text-refopEscuro" define a cor base do texto. --}}
+        <article class="prose max-w-none text-refopEscuro">
+            {!! $sobre->content !!}
+        </article>
     </div>
 
+    {{-- Apenas administradores logados verão esta seção --}}
+    @auth
+        @if (Auth::user()->is_admin)
+            <div class="text-right mb-4">
+                <button id="edit-button" class="bg-refop hover:bg-refopEscuro text-white font-bold py-2 px-4 rounded">
+                    Editar Página
+                </button>
+            </div>
+
+            {{-- Formulário de edição, inicialmente oculto --}}
+            <div id="edit-form" style="display: none;" class="bg-white p-6 sm:p-8 rounded-lg shadow-xl mb-8">
+                <form onsubmit="event.preventDefault(); saveContent();">
+                    @csrf
+                    @method('PUT')
+
+                    <input id="trix-content-input" type="hidden" name="content" value="{{ $sobre->content }}">
+                    <trix-editor input="trix-content-input" class="trix-content"></trix-editor>
+
+                    <div class="mt-6 flex justify-end gap-4">
+                        <button type="button" id="cancel-button"
+                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                            Cancelar
+                        </button>
+                        <button type="submit" id="save-button"
+                            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        @endif
+    @endauth
 
 @endsection
+@push('scripts')
+    <script>
+        @auth
+        @if (Auth::user()->is_admin)
+            const viewContent = document.getElementById('view-content');
+            const editForm = document.getElementById('edit-form');
+            const editButton = document.getElementById('edit-button');
+            const cancelButton = document.getElementById('cancel-button');
+
+            editButton.addEventListener('click', () => {
+                viewContent.style.display = 'none';
+                editButton.style.display = 'none';
+                editForm.style.display = 'block';
+            });
+
+            cancelButton.addEventListener('click', () => {
+                viewContent.style.display = 'block';
+                editButton.style.display = 'block';
+                editForm.style.display = 'none';
+            });
+
+            async function saveContent() {
+                const saveButton = document.getElementById('save-button');
+                saveButton.disabled = true;
+                saveButton.innerText = 'Salvando...';
+
+                const content = document.getElementById('trix-content-input').value;
+                const token = document.querySelector('input[name="_token"]').value;
+
+                try {
+                    // --- LINHA CORRIGIDA ---
+                    // Removemos o segundo argumento ['slug' => 'sobre'] da função route()
+                    const response = await fetch("{{ route('sobre.update') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': token,
+                            'Accept': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            _method: 'PUT',
+                            content: content
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok && result.success) {
+                        viewContent.innerHTML = content;
+                        alert('Página atualizada com sucesso!');
+                        cancelButton.click();
+                    } else {
+                        throw new Error(result.message || 'Ocorreu um erro ao salvar.');
+                    }
+                } catch (error) {
+                    console.error('Erro ao salvar:', error);
+                    alert('Falha ao salvar as alterações. Verifique o console para mais detalhes.');
+                } finally {
+                    saveButton.disabled = false;
+                    saveButton.innerText = 'Salvar Alterações';
+                }
+            }
+        @endif
+        @endauth
+    </script>
+@endpush
+
+@push('styles')
+    <style>
+        /* Estilo para que o Trix ocupe o espaço corretamente */
+        .trix-content {
+            min-height: 300px;
+            background-color: white;
+        }
+    </style>
+@endpush

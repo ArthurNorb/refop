@@ -4,16 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RepublicasController;
+use App\Http\Controllers\SobreController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
 Route::get('/', function () {
     return view('index');
 })->name('home');
-
-Route::get('/sobre', function () {
-    return view('sobre');
-});
 
 Route::get('/eventos', function () {
     return view('eventos');
@@ -57,6 +54,9 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])
 
 Route::get('/republicas', [RepublicasController::class, 'index'])->name('republicas.index');
 Route::get('/republicas/{republica}', [RepublicasController::class, 'show'])->name('republicas.show');
+
+Route::get('/sobre', [SobreController::class, 'show'])->name('sobre.show');
+Route::put('/sobre', [SobreController::class, 'update'])->name('sobre.update')->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
