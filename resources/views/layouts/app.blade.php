@@ -23,6 +23,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
 
     <!-- Styles -->
     @stack('styles')
@@ -109,7 +110,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('galeria') ? 'bg-refopClaro' : '' }}"
-                            href="{{ url('/galeria') }}">Galeria</a>
+                            href="{{ route('galeria.index') }}">Galeria</a>
                     </li>
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('contato') ? 'bg-refopClaro' : '' }}"
@@ -133,6 +134,7 @@
         </div>
     </footer>
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     @stack('scripts')
 
     @livewireScripts
