@@ -89,15 +89,15 @@
         <div class="text-center py-10 border-t border-gray-200">
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="{{ route('republicas.index') }}"
-                    class="w-full sm:w-auto bg-refopEscuro text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-gray-800 transition-colors">
+                    class="w-full sm:w-auto bg-refopEscuro border-hidden text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-gray-200 hover:text-refopEscuro hover:border-refopEscuro transition-colors">
                     Conheça as Repúblicas
                 </a>
                 <a href="{{ route('sobre.show') }}"
-                    class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-8 rounded-lg shadow-md hover:bg-gray-300 transition-colors">
+                    class="w-full sm:w-auto bg-refopEscuro border-hidden text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-gray-200 hover:text-refopEscuro hover:border-refopEscuro transition-colors">
                     Sobre a REFOP
                 </a>
                 <a href="{{ route('contato.show') }}"
-                    class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-8 rounded-lg shadow-md hover:bg-gray-300 transition-colors">
+                    class="w-full sm:w-auto bg-refopEscuro border-hidden text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-gray-200 hover:text-refopEscuro hover:border-refopEscuro transition-colors">
                     Contato
                 </a>
             </div>

@@ -14,7 +14,7 @@
         <h1 class="text-4xl font-bold text-refopEscuro mb-4">{{ $event->title }}</h1>
         
         <div class="text-lg text-gray-600 mb-6 space-y-2">
-            <p><strong>Data e Horário:</strong> {{ $event->event_datetime->format('l, d \d\e F \d\e Y \à\s H:i') }}</p>
+            <p><strong>Data e Horário:</strong> {{ $event->event_datetime->translatedFormat('l, d \d\e F \d\e Y \à\s H:i') }}</p>
             <p><strong>Local:</strong> {{ $event->location_name }}</p>
         </div>
 

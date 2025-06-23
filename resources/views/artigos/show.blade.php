@@ -11,7 +11,7 @@
         <div class="bg-white p-8 rounded-xl shadow-lg">
             <h1 class="text-4xl font-bold text-refopEscuro mb-4">{{ $article->title }}</h1>
             <p class="text-gray-600 mb-6">
-                Por <span class="font-semibold">{{ $article->user->name }}</span> em {{ $article->created_at->format('d \d\e F \d\e Y') }}
+                Por <span class="font-semibold">{{ $article->user->name }}</span> em {{ $article->created_at->translatedFormat('d \d\e F \d\e Y') }}
             </p>
 
             {{-- Usamos a classe 'prose' do plugin de tipografia do Tailwind para formatar o conteúdo --}}
