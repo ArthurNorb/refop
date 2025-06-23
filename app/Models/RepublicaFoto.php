@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
 class RepublicaFoto extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.

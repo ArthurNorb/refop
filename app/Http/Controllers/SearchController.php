@@ -1,5 +1,4 @@
 <?php
-// app/Http/Controllers/SearchController.php
 
 namespace App\Http\Controllers;
 
@@ -18,15 +17,29 @@ class SearchController extends Controller
             return redirect()->route('home');
         }
 
-        $articles = Article::search($term)->get();
-        $events = Event::search($term)->get();
-        $republicas = Republica::search($term)->get();
+        $searchTerm = '%' . $term . '%';
 
+        $articles = Article::where('title', 'LIKE', $searchTerm)
+                           ->orWhere('excerpt', 'LIKE', $searchTerm)
+                           ->orWhere('body', 'LIKE', $searchTerm)
+                           ->get();
+
+        $events = Event::where('title', 'LIKE', $searchTerm)
+                       ->orWhere('description', 'LIKE', $searchTerm)
+                       ->orWhere('location_name', 'LIKE', $searchTerm)
+                       ->get();
+
+        $republicas = Republica::where('nome', 'LIKE', $searchTerm)
+                             ->orWhere('descricao', 'LIKE', $searchTerm)
+                             ->get();
+        
         $results = collect([])->concat($articles)->concat($events)->concat($republicas);
+
+        $sortedResults = $results->sortByDesc('created_at');
 
         return view('search.results', [
             'term' => $term,
-            'results' => $results,
+            'results' => $sortedResults,
         ]);
     }
 }

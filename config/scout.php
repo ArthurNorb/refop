@@ -17,7 +17,13 @@ return [
     */
 
     'driver' => env('SCOUT_DRIVER', 'database'),
+    'database' => [
+    // Força o Scout a usar cláusulas LIKE simples, que são mais confiáveis.
+    'mode' => 'LIKE',
 
+    // Diz ao Scout para concentrar a busca na coluna que criamos.
+    'index' => 'scout_index',
+],
     /*
     |--------------------------------------------------------------------------
     | Index Prefix
