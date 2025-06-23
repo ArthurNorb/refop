@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\RepublicasController;
 use App\Http\Controllers\SobreController;
@@ -12,10 +13,6 @@ use App\Http\Middleware\EnsureUserIsAdmin;
 Route::get('/', function () {
     return view('index');
 })->name('home');
-
-Route::get('/eventos', function () {
-    return view('eventos');
-});
 
 Route::middleware(['auth', EnsureUserIsAdmin::class])
     ->prefix('admin')
@@ -56,10 +53,19 @@ Route::get('/sobre', [SobreController::class, 'show'])->name('sobre.show');
 Route::put('/sobre', [SobreController::class, 'update'])->name('sobre.update')->middleware('auth');
 
 Route::get('/galeria', [GalleryController::class, 'index'])->name('galeria.index');
-
 Route::middleware('auth')->group(function () {
     Route::post('/galeria', [GalleryController::class, 'store'])->name('galeria.store');
     Route::delete('/galeria/{image}', [GalleryController::class, 'destroy'])->name('galeria.destroy');
+});
+
+Route::get('/eventos', [EventController::class, 'index'])->name('eventos.index');
+Route::get('/eventos/criar', [EventController::class, 'create'])->name('eventos.create')->middleware('auth');
+Route::get('/eventos/{event}', [EventController::class, 'show'])->name('eventos.show');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/eventos', [EventController::class, 'store'])->name('eventos.store');
+    Route::get('/eventos/{event}/editar', [EventController::class, 'edit'])->name('eventos.edit');
+    Route::put('/eventos/{event}', [EventController::class, 'update'])->name('eventos.update');
+    Route::delete('/eventos/{event}', [EventController::class, 'destroy'])->name('eventos.destroy');
 });
 
 Route::middleware([

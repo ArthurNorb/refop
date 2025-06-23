@@ -24,6 +24,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <!-- Styles -->
     @stack('styles')
@@ -106,7 +107,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('eventos') ? 'bg-refopClaro' : '' }}"
-                            href="{{ url('/eventos') }}">Eventos</a>
+                            href="{{ route('eventos.index') }}">Eventos</a>
                     </li>
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('galeria') ? 'bg-refopClaro' : '' }}"
@@ -175,6 +176,7 @@
     </footer>
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     @stack('scripts')
 
     @livewireScripts
