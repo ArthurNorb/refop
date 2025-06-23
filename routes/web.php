@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
@@ -66,6 +67,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/eventos/{event}/editar', [EventController::class, 'edit'])->name('eventos.edit');
     Route::put('/eventos/{event}', [EventController::class, 'update'])->name('eventos.update');
     Route::delete('/eventos/{event}', [EventController::class, 'destroy'])->name('eventos.destroy');
+});
+
+Route::get('/artigos', [ArticleController::class, 'index'])->name('artigos.index');
+Route::get('/artigos/create', [ArticleController::class, 'create'])->name('artigos.create')->middleware('auth');
+Route::post('/artigos', [ArticleController::class, 'store'])->name('artigos.store')->middleware('auth');
+Route::get('/artigos/{article}', [ArticleController::class, 'show'])->name('artigos.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/artigos/{article}/edit', [ArticleController::class, 'edit'])->name('artigos.edit');
+    Route::put('/artigos/{article}', [ArticleController::class, 'update'])->name('artigos.update');
+    Route::delete('/artigos/{article}', [ArticleController::class, 'destroy'])->name('artigos.destroy');
 });
 
 Route::middleware([

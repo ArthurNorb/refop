@@ -98,8 +98,8 @@
                             href="{{ url('/') }}">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
-                            href="{{ route('sobre.show') }}">Sobre</a>
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('artigos') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('artigos.index') }}">Artigos</a>
                     </li>
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('republicas') ? 'bg-refopClaro' : '' }}"
@@ -116,6 +116,10 @@
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('contato') ? 'bg-refopClaro' : '' }}"
                             href="{{ url('/contato') }}">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('sobre.show') }}">Sobre</a>
                     </li>
                 </ul>
             </nav>
@@ -136,9 +140,9 @@
 
                 <div class="text-center md:text-left">
                     <p class="text-sm">&copy; {{ date('Y') }} REFOP. Todos os direitos reservados.</p>
-                    <p class="text-xs opacity-75 mt-1">
+                    <a href="https://www.linkedin.com/in/arthur-norberto-585412205/" target="_blank" rel="noopener noreferrer" class="text-xs opacity-75 mt-1">
                         Desenvolvido por Arthur Norberto (Pirulito)
-                    </p>
+                    </a>
                 </div>
 
                 <div class="flex items-center gap-6">

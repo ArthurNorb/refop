@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Responses\CustomLoginResponse;
+use Carbon\Carbon;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Carbon::setLocale(config('app.locale'));
     }
 }
