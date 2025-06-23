@@ -8,6 +8,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RepublicasController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Middleware\EnsureUserIsAdmin;
@@ -77,6 +78,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/artigos/{article}', [ArticleController::class, 'update'])->name('artigos.update');
     Route::delete('/artigos/{article}', [ArticleController::class, 'destroy'])->name('artigos.destroy');
 });
+
+Route::get('/pesquisa', [SearchController::class, 'index'])->name('search.index');
 
 Route::middleware([
     'auth:sanctum',

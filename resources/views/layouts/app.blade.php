@@ -79,12 +79,13 @@
                 </div>
 
                 <div class="w-full sm:w-auto mt-4 sm:mt-0 sm:ml-auto md:w-1/3 lg:w-1/4">
-                    <form class="flex" role="search">
+                    <form action="{{ route('search.index') }}" method="GET" class="flex" role="search">
                         <input
                             class="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded-l-md py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-slate-500 placeholder-gray-400"
-                            type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                            type="search" name="term" placeholder="Pesquisar..."
+                            aria-label="Pesquisar" value="{{ request('term') }}"> 
                         <button
-                            class="px-4 py-2 border-t border-b border-r border-white text-white bg-refop hover:bg-refopClaro rounded-r-md transition duration-150"
+                            class="px-4 py-2 text-white bg-refop hover:bg-refopEscuro rounded-r-md transition duration-150"
                             type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -141,7 +142,8 @@
 
                 <div class="text-center md:text-left">
                     <p class="text-sm">&copy; {{ date('Y') }} REFOP. Todos os direitos reservados.</p>
-                    <a href="https://www.linkedin.com/in/arthur-norberto-585412205/" target="_blank" rel="noopener noreferrer" class="text-xs opacity-75 mt-1">
+                    <a href="https://www.linkedin.com/in/arthur-norberto-585412205/" target="_blank"
+                        rel="noopener noreferrer" class="text-xs opacity-75 mt-1">
                         Desenvolvido por Arthur Norberto (Pirulito)
                     </a>
                 </div>
