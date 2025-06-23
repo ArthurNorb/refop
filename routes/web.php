@@ -6,14 +6,13 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RepublicasController;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', EnsureUserIsAdmin::class])
     ->prefix('admin')
