@@ -15,7 +15,7 @@
                 <a href="{{ route('artigos.show', $result) }}" class="block p-5 bg-white rounded-lg shadow hover:shadow-xl transition-shadow">
                     <div class="flex items-center gap-4">
                         <span class="flex-shrink-0 bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Artigo</span>
-                        <div>
+                        <div class="overflow-hidden">
                             <p class="font-semibold text-refop text-lg">{{ $result->title }}</p>
                             <p class="text-sm text-gray-600 truncate">{{ $result->excerpt }}</p>
                         </div>
@@ -25,7 +25,7 @@
                 <a href="{{ route('eventos.show', $result) }}" class="block p-5 bg-white rounded-lg shadow hover:shadow-xl transition-shadow">
                      <div class="flex items-center gap-4">
                         <span class="flex-shrink-0 bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Evento</span>
-                        <div>
+                        <div class="overflow-hidden">
                             <p class="font-semibold text-refop text-lg">{{ $result->title }}</p>
                             <p class="text-sm text-gray-600">Em {{ $result->location_name }} no dia {{ $result->event_datetime->format('d/m/Y') }}</p>
                         </div>
@@ -33,11 +33,10 @@
                 </a>
             @elseif ($result instanceof \App\Models\Republica)
                 <a href="{{ route('republicas.show', $result) }}" class="block p-5 bg-white rounded-lg shadow hover:shadow-xl transition-shadow">
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-4 overflow-hidden">
                         <span class="flex-shrink-0 bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">República</span>
                         <div>
                             <p class="font-semibold text-refop text-lg">{{ $result->nome }}</p>
-                            <p class="text-sm text-gray-600">Localizada no bairro {{ $result->bairro }}</p>
                         </div>
                     </div>
                 </a>
