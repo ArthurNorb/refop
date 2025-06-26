@@ -1,132 +1,136 @@
-# Projeto REFOP - Website da Associação das Repúblicas Federais de Ouro Preto
+# REFOP Site
 
-## Visão Geral do Projeto
+**Associação das Repúblicas Federais de Ouro Preto (REFOP)**
 
-O Website da REFOP é uma plataforma digital desenvolvida para ser o principal canal de comunicação da Associação das Repúblicas Federais de Ouro Preto com suas repúblicas associadas, estudantes e a comunidade em geral. O site apresenta um design moderno e responsivo, focado em centralizar informações, divulgar eventos e facilitar a interação.
+Aplicação institucional moderna para gerenciamento e divulgação das atividades da REFOP.
 
-### Funcionalidades Principais:
+---
 
-* **Página Inicial:** Exibição de publicações e notícias recentes.
-* **Sobre:** Informações institucionais da REFOP.
-* **Repúblicas:** Listagem de todas as repúblicas associadas, com páginas individuais detalhadas para cada uma.
-* **Eventos:** Calendário e arquivo de eventos da associação.
-* **Galeria:** Coleção de fotos de eventos e atividades.
-* **Contato:** Formulário de e-mail para a ouvidoria da REFOP.
-* **Painel Administrativo:** Área restrita para gerenciamento (CRUD) de publicações, repúblicas, eventos e galeria de fotos.
+## Visão Geral
 
-## Tecnologias Utilizadas
+Este projeto é a plataforma oficial da REFOP — entidade sem fins lucrativos que representa as moradias estudantis federais da UFOP desde 2007. Aqui, você encontra:
 
-* **Backend:** Laravel (PHP Framework)
-* **Frontend:** HTML, SCSS (Sass), Bootstrap, JavaScript
-* **Banco de Dados:** MySQL
-* **Gerenciamento de Pacotes PHP:** Composer
-* **Gerenciamento de Pacotes JavaScript:** npm ou Yarn
-* **Compilação de Assets:** Vite
+- Publicação de **artigos**, **notícias**, **comunicados** e **notas oficiais**
+- Divulgação de **eventos** e **ações solidárias**
+- Apresentação das **repúblicas** e sua **estrutura de governança**
+- Conteúdo explicativo sobre o funcionamento da **UFOP** e da **REFOP**
 
-## Requisitos do Sistema
+## Tecnologias Empregadas
 
-Certifique-se de que seu ambiente de desenvolvimento atenda aos seguintes requisitos:
+- **Backend:** Laravel 10.x, PHP 8.x, MySQL
+- **Autenticação & UI:** Jetstream, Livewire, Alpine.js
+- **Front-end:** Tailwind CSS, Vite, Blade Components
+- **DevOps & Build:** Composer, NPM/Yarn, Git
 
-* PHP >= 8.1
-* Composer
-* Node.js >= 16.0
-* npm ou Yarn
-* Servidor web (Apache, Nginx ou PHP Development Server)
-* MySQL ou outro banco de dados compatível com Laravel
+## Pré-requisitos
 
-## Como Instalar e Configurar o Projeto
+- PHP ≥ 8.1
+- Composer
+- Node.js ≥ 16.x
+- NPM ou Yarn
+- Git CLI
+- Servidor web (Apache/Nginx) com suporte a PHP
 
-Siga os passos abaixo para colocar o projeto em funcionamento em sua máquina local.
+## Instalação e Setup
 
-### 1. Clonar o Repositório
+1. Clone o repositório:
+   ```bash
+   git clone <URL_DO_REPOSITORIO> refop-site
+   cd refop-site
+    ```
 
-Primeiro, clone o repositório do GitHub para o seu ambiente local:
+2. Configure variáveis de ambiente:
 
-```bash
-git clone https://github.com/ArthurNorb/refop
-cd refop-site
-```
+   * Duplique `.env.example` para `.env`
+   * Ajuste `APP_URL`, `DB_*` e credenciais de e-mail
 
-## 2. Instalar Dependências PHP
+3. Instale dependências backend:
 
-```bash
-composer install
-```
+   ```bash
+   composer install --no-dev --optimize-autoloader
+   ```
 
-## 3. Configurar o Arquivo de Ambiente (`.env`)
+4. Instale dependências front-end e gere assets:
 
-Copie o arquivo de exemplo `.env.example` para `.env` e configure as credenciais do seu banco de dados e outras variáveis de ambiente.
+   ```bash
+   npm ci
+   npm run build
+   ```
 
-```bash
-cp .env.example .env
-```
+5. Gere caches de produção:
 
-Abra o arquivo `.env` e configure as variáveis, preenchendo com suas informações de banco de dados:
+   ```bash
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
 
-```
-APP_NAME="REFOP"
-APP_ENV=local
-APP_KEY=
-APP_DEBUG=true
-APP_URL=http://localhost:8000
+## Banco de Dados
 
+1. Crie o banco:
+
+   ```sql
+   CREATE DATABASE refop;
+   ```
+2. Execute as migrations:
+
+   ```bash
+   php artisan migrate --force
+   ```
+
+## Deploy & Distribuição
+
+* **Pacote ZIP (NTI)**:
+
+  ```bash
+  zip -r REFOP-site.zip . -x ".git/*" ".env" "node_modules/*" "storage/logs/*"
+  ```
+
+  \-- ou --
+
+  ```bash
+  git archive --format=zip --output=REFOP-release.zip HEAD
+  ```
+
+* **Tarball**:
+
+  ```bash
+  tar -czvf REFOP-site.tar.gz --exclude='.git' --exclude='.env' .
+  ```
+
+## Variáveis de Ambiente Mínimas
+
+```ini
+APP_NAME=REFOP
+APP_ENV=production
+APP_URL=https://refop.ufop.br
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=refop_db
-DB_USERNAME={usuario}
-DB_PASSWORD={senha}
+DB_DATABASE=refop
+DB_USERNAME=usuario
+DB_PASSWORD=senha
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.ufop.br
+MAIL_PORT=587
+MAIL_USERNAME=...
+MAIL_PASSWORD=...
+MAIL_ENCRYPTION=tls
 ```
 
-## 4. Gerar a Application Key
+## Health-Checks e Monitoramento
 
-```bash
-php artisan key:generate
-```
+* Verificar endpoint `/health` para status 200
+* Logs em `storage/logs/laravel.log`
+* Monitorar uso de CPU/Memory no servidor
 
-## 5. Configurar o Banco de Dados
+## Contato & Suporte
 
-Crie o banco de dados conforme o nome definido em `DB_DATABASE` no seu servidor MySQL. Em seguida, execute as migrações para criar as tabelas no banco de dados.
+Para dúvidas, deploy ou suporte técnico, contate:
 
-```bash
-php artisan migrate
-```
+* **Arthur** – \[email protected]
+* **NTI UFOP** – [nti@ufop.br](mailto:nti@ufop.br)
 
-## 6. Instalar Dependências Node.js
+---
 
-Com npm ou Yarn, instale as dependências frontend.
-
-```bash
-npm install
-```
-
-## 7. Compilar Assets Frontend
-
-Use o Vite para compilar os arquivos SCSS e JavaScript.
-
-```bash
-npm run dev
-```
-
-Se você usar `npm run dev`, o Vite continuará observando as alterações e recompilando os assets automaticamente. Mantenha este comando rodando em um terminal separado enquanto desenvolve.
-
-## 8. Iniciar o Servidor de Desenvolvimento
-
-Você pode iniciar o servidor de desenvolvimento do Laravel.
-
-```bash
-php artisan serve
-```
-
-O site estará disponível em `http://localhost:8000` (ou a porta indicada).
-
-## Estrutura de Pastas Relevantes
-
-* `app/Models/`
-* `app/Http/Controllers/`
-* `routes/web.php`
-* `resources/views/`
-* `resources/scss/`
-* `resources/js/`
-* `public/`
-* `database/migrations/`
+*Entregue com robustez, compliance e governança, pronto para produção.*
