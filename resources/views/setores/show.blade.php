@@ -22,8 +22,8 @@
 
         @if ($setor->descricao)
             <div class="mt-8 pt-8 border-t border-gray-200">
-                <h2 class="text-xl font-bold text-gray-800 mb-2">Descrição</h2>
-                <p class="text-gray-700 whitespace-pre-wrap">{{ $setor->descricao }}</p>
+                <h2 class="text-xl font-bold text-gray-800 mb-2">Funções:</h2>
+                <p class="text-gray-700 whitespace-pre-wrap">{!! $setor->descricao !!}</p>
             </div>
         @endif
         
