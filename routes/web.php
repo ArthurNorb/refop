@@ -9,6 +9,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RepublicasController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SetorController;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Middleware\EnsureUserIsAdmin;
@@ -80,6 +81,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/pesquisa', [SearchController::class, 'index'])->name('search.index');
+
+Route::Resource('setores', SetorController::class);
 
 Route::middleware([
     'auth:sanctum',
