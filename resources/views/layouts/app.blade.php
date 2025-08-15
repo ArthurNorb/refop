@@ -108,6 +108,10 @@
                             href="{{ route('republicas.index') }}">Repúblicas</a>
                     </li>
                     <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('setores') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('setores.index') }}">Setores</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('eventos') ? 'bg-refopClaro' : '' }}"
                             href="{{ route('eventos.index') }}">Eventos</a>
                     </li>

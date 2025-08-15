@@ -82,7 +82,19 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/pesquisa', [SearchController::class, 'index'])->name('search.index');
 
-Route::Resource('setores', SetorController::class);
+Route::middleware(['auth', EnsureUserIsAdmin::class])
+    ->prefix('setores')
+    ->name('setores.')
+    ->group(function () {
+        Route::get('/adicionar', [SetorController::class, 'create'])->name('create');
+        Route::post('/', [SetorController::class, 'store'])->name('store');
+        Route::get('/{setor}/editar', [SetorController::class, 'edit'])->name('edit');
+        Route::put('/{setor}', [SetorController::class, 'update'])->name('update');
+        Route::delete('/{setor}', [SetorController::class, 'destroy'])->name('destroy');
+    });
+
+Route::get('/setores', [SetorController::class, 'index'])->name('setores.index');
+Route::get('/setores/{setor}', [SetorController::class, 'show'])->name('setores.show');
 
 Route::middleware([
     'auth:sanctum',

@@ -5,101 +5,97 @@ namespace App\Http\Controllers;
 use App\Models\Setor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class SetorController extends Controller
 {
     /**
-     * Lista todos os setores.
-     * GET /api/setores
+     * Mostra a lista de todos os setores.
+     * GET /setores
      */
     public function index()
     {
         $setores = Setor::paginate(10);
-        return response()->json($setores);
+        return view('setores.index', compact('setores'));
     }
 
     /**
-     * Cria um novo setor.
-     * POST /api/setores
+     * Mostra o formulário para criar um novo setor.
+     * GET /setores/create
+     */
+    public function create()
+    {
+        return view('setores.create');
+    }
+
+    /**
+     * Salva um novo setor no banco de dados.
+     * POST /setores
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048' // max 2MB
+        ]);
+        if ($request->hasFile('imagem')) {
+            $validatedData['imagem'] = $request->file('imagem')->store('setores', 'public');
+        }
+        Setor::create($validatedData);
+        return redirect()->route('setores.index')->with('success', 'Setor criado com sucesso!');
+    }
+
+    /**
+     * Mostra os detalhes de um setor específico.
+     * GET /setores/{setor}
+     */
+    public function show(Setor $setor)
+    {
+        return view('setores.show', compact('setor'));
+    }
+
+    /**
+     * Mostra o formulário para editar um setor.
+     * GET /setores/{setor}/edit
+     */
+    public function edit(Setor $setor)
+    {
+        return view('setores.edit', compact('setor'));
+    }
+
+    /**
+     * Atualiza um setor no banco de dados.
+     * PUT/PATCH /setores/{setor}
+     */
+    public function update(Request $request, Setor $setor)
+    {
+        $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'imagem' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        $dados = $validator->validated();
-        $caminhoImagem = null;
-
-        if ($request->hasFile('imagem')) {
-            $caminhoImagem = $request->file('imagem')->store('setores', 'public');
-            $dados['imagem'] = $caminhoImagem;
-        }
-
-        $setor = Setor::create($dados);
-
-        return response()->json($setor, 201);
-    }
-
-    /**
-     * Mostra um setor específico.
-     * GET /api/setores/{id}
-     */
-    public function show(Setor $setor)
-    {
-        return response()->json($setor);
-    }
-
-    /**
-     * Atualiza um setor existente.
-     * PUT/PATCH /api/setores/{id}
-     */
-    public function update(Request $request, Setor $setor)
-    {
-        $validator = Validator::make($request->all(), [
-            'nome' => 'sometimes|required|string|max:255',
-            'descricao' => 'sometimes|nullable|string',
-            'imagem' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        $dados = $validator->validated();
-
         if ($request->hasFile('imagem')) {
             if ($setor->imagem) {
                 Storage::disk('public')->delete($setor->imagem);
             }
-
-            $caminhoImagem = $request->file('imagem')->store('setores', 'public');
-            $dados['imagem'] = $caminhoImagem;
+            $validatedData['imagem'] = $request->file('imagem')->store('setores', 'public');
         }
 
-        $setor->update($dados);
-
-        return response()->json($setor);
+        $setor->update($validatedData);
+        return redirect()->route('setores.index')->with('success', 'Setor atualizado com sucesso!');
     }
 
     /**
-     * Deleta um setor.
-     * DELETE /api/setores/{id}
+     * Remove um setor do banco de dados.
+     * DELETE /setores/{setor}
      */
     public function destroy(Setor $setor)
     {
         if ($setor->imagem) {
             Storage::disk('public')->delete($setor->imagem);
         }
-
         $setor->delete();
-        return response()->json(null, 204);
+        return redirect()->route('setores.index')->with('success', 'Setor excluído com sucesso!');
     }
 }
