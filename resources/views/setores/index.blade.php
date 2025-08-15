@@ -6,7 +6,7 @@
     <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
-            <h2 class="text-3xl font-bold text-refopEscuro mb-4 sm:mb-0">Setores da Organização</h2>
+            <h2 class="text-3xl font-bold text-refopEscuro mb-4 sm:mb-0">Setores</h2>
 
             @if (auth()->check() && auth()->user()->isAdmin())
                 <a href="{{ route('setores.create') }}"
