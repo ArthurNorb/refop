@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             SobreSeeder::class,
             SetorSeeder::class,
+            RepublicaSeeder::class,
         ]);
     }
 }
