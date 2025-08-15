@@ -33,7 +33,7 @@
 </head>
 
 <body class="flex flex-col min-h-screen bg-offWhite font-montserrat antialiased">
-    <header class="bg-refop text-slate-100 pt-3 px-5 shadow-md">
+    <header x-data="{ open: false }" class="bg-refop text-slate-100 pt-3 px-5 shadow-md relative">
         <div class="container mx-auto">
             @auth
                 <div>
@@ -65,8 +65,9 @@
                     </ul>
                 </div>
             @endauth
-            <div class="flex flex-col sm:flex-row items-center justify-between pb-3">
-                <div class="flex items-center">
+
+            <div class="flex items-center justify-between pb-3">
+                <div class="flex items-center flex-shrink-0">
                     <a href="{{ url('/') }}">
                         <img src="{{ asset('img/LogoREFOP.png') }}" alt="REFOP Logo" class="w-20 md:w-24 h-auto mr-4">
                     </a>
@@ -74,16 +75,25 @@
                         <a href="{{ url('/') }}">
                             <img src="{{ asset('img/REFOP.png') }}" alt="REFOP Nome" class="w-24 md:w-32 h-auto mb-1">
                         </a>
-                        <p class="text-xs sm:text-sm">Associação das Repúblicas Federais de Ouro Preto</p>
+                        <p class="hidden sm:block text-xs sm:text-sm">Associação das Repúblicas Federais de Ouro Preto</p>
                     </div>
                 </div>
 
-                <div class="w-full sm:w-auto mt-4 sm:mt-0 sm:ml-auto md:w-1/3 lg:w-1/4">
+                <div class="sm:hidden">
+                    <button @click="open = !open" class="text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="hidden sm:flex w-full sm:w-auto sm:ml-auto md:w-1/3 lg:w-1/4">
                     <form action="{{ route('search.index') }}" method="GET" class="flex" role="search">
                         <input
                             class="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded-l-md py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-slate-500 placeholder-gray-400"
-                            type="search" name="term" placeholder="Pesquisar..."
-                            aria-label="Pesquisar" value="{{ request('term') }}"> 
+                            type="search" name="term" placeholder="Pesquisar..." aria-label="Pesquisar"
+                            value="{{ request('term') }}">
                         <button
                             class="px-4 py-2 text-white bg-refop hover:bg-refopEscuro rounded-r-md transition duration-150"
                             type="submit">
@@ -93,7 +103,7 @@
                 </div>
             </div>
 
-            <nav>
+            <nav class="hidden sm:block">
                 <ul class="flex flex-wrap justify-center list-none p-0 m-0">
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('/') ? 'bg-refopClaro' : '' }}"
@@ -129,6 +139,58 @@
                     </li>
                 </ul>
             </nav>
+        </div>
+
+        <div x-show="open" @click.away="open = false" x-transition
+            class="sm:hidden bg-refop w-full absolute top-full left-0 shadow-lg z-20">
+            <div class="p-4">
+                <form action="{{ route('search.index') }}" method="GET" class="flex mb-4" role="search">
+                    <input
+                        class="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded-l-md py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-slate-500 placeholder-gray-400"
+                        type="search" name="term" placeholder="Pesquisar..." aria-label="Pesquisar"
+                        value="{{ request('term') }}">
+                    <button
+                        class="px-4 py-2 text-white bg-refop hover:bg-refopEscuro rounded-r-md transition duration-150"
+                        type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <ul class="flex flex-col items-center list-none p-0 m-0">
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('/') ? 'bg-refopClaro' : '' }}"
+                            href="{{ url('/') }}">Início</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('artigos') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('artigos.index') }}">Artigos</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('republicas') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('republicas.index') }}">Repúblicas</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('setores') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('setores.index') }}">Setores</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('eventos') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('eventos.index') }}">Eventos</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('galeria') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('galeria.index') }}">Galeria</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('contato') ? 'bg-refopClaro' : '' }}"
+                            href="{{ url('/contato') }}">Contato</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('sobre.show') }}">Sobre</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
 
