@@ -224,7 +224,7 @@
     </main>
 
     <footer class="mt-auto py-6 bg-refop text-offWhite relative">
-        <div id="igreja-decorativa-fundo"></div>
+        <div id="igreja-decorativa-fundo" class="hidden sm:block"></div>
 
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
