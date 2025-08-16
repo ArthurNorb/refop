@@ -10,24 +10,3 @@ body {
 footer {
     position: relative;
 }
-
-#igreja-decorativa-fundo {
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: -2rem;
-    right: -30rem;
-    width: 80rem;
-    height: 80rem;
-
-    background-color: var(--cor-azul-escuro-refop);
-    -webkit-mask-image: url('../img/igreja.svg');
-    mask-image: url('../img/igreja.svg');
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-    z-index: -999;
-    opacity: 0.2;
-}

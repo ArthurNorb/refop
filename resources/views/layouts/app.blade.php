@@ -29,11 +29,33 @@
 
     <!-- Styles -->
     @stack('styles')
+    <style>
+        #igreja-decorativa-fundo {
+            position: absolute;
+            bottom: 100%;
+            margin-bottom: -2rem;
+            right: -30rem;
+            width: 80rem;
+            height: 80rem;
+
+            background-color: var(--cor-azul-escuro-refop);
+            -webkit-mask-image: url('../img/igreja.svg');
+            mask-image: url('../img/igreja.svg');
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            z-index: -999;
+            opacity: 0.2;
+        }
+    </style>
     @livewireStyles
 </head>
 
 <body class="flex flex-col min-h-screen bg-offWhite font-montserrat antialiased">
-    <header x-data="{ open: false }" class="bg-refop text-slate-100 pt-3 px-5 shadow-md relative">
+    <header x-data="{ open: false }" class="bg-refop text-slate-100 pt-3 px-5 shadow-md relative z-30">
         <div class="container mx-auto">
             @auth
                 <div>
@@ -75,7 +97,8 @@
                         <a href="{{ url('/') }}">
                             <img src="{{ asset('img/REFOP.png') }}" alt="REFOP Nome" class="w-24 md:w-32 h-auto mb-1">
                         </a>
-                        <p class="hidden sm:block text-xs sm:text-sm">Associação das Repúblicas Federais de Ouro Preto</p>
+                        <p class="hidden sm:block text-xs sm:text-sm">Associação das Repúblicas Federais de Ouro Preto
+                        </p>
                     </div>
                 </div>
 
