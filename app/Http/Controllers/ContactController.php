@@ -17,7 +17,6 @@ class ContactController extends Controller
     // Processa o envio do formulário
     public function send(Request $request)
     {
-        // 1. Validação dos campos
         $data = $request->validate([
             'nome' => 'required|string|max:100',
             'email' => 'required|email',
@@ -26,13 +25,10 @@ class ContactController extends Controller
             'mensagem' => 'required|string|min:10',
         ]);
 
-        // 2. Envio do E-mail
-        // O destinatário final. Por enquanto, seu email para teste.
         $recipientEmail = 'refop@ufop.edu.br'; 
         
         Mail::to($recipientEmail)->send(new ContactFormMail($data));
 
-        // 3. Redireciona de volta com uma mensagem de sucesso
         return redirect()->route('contato.show')->with('success', 'Sua mensagem foi enviada com sucesso!');
     }
 }
