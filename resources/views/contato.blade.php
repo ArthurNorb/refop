@@ -69,7 +69,7 @@
                         class="w-full font-semibold inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base text-white bg-refop hover:bg-refopEscuro focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-refop transition-colors duration-150 ease-in-out">
                         Enviar Mensagem
                     </button>
-                    <p class="text-refopClaro text-xs pt-0.5">Campos obrigatórios marcados com asterisco (<p class="text-refopClaro">*</p>)</p>
+                    <p class="text-refopClaro text-xs pt-0.5">Campos obrigatórios marcados com asterisco (*)</p>
                 </div>
             </form>
         </div>
