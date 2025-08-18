@@ -133,6 +133,10 @@
                             href="{{ url('/') }}">Início</a>
                     </li>
                     <li class="nav-item">
+                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('sobre.show') }}">Sobre</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('artigos') ? 'bg-refopClaro' : '' }}"
                             href="{{ route('artigos.index') }}">Artigos</a>
                     </li>
@@ -155,10 +159,6 @@
                     <li class="nav-item">
                         <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('contato') ? 'bg-refopClaro' : '' }}"
                             href="{{ url('/contato') }}">Contato</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="block text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
-                            href="{{ route('sobre.show') }}">Sobre</a>
                     </li>
                 </ul>
             </nav>
@@ -185,6 +185,10 @@
                             href="{{ url('/') }}">Início</a>
                     </li>
                     <li class="w-full">
+                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
+                            href="{{ route('sobre.show') }}">Sobre</a>
+                    </li>
+                    <li class="w-full">
                         <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('artigos') ? 'bg-refopClaro' : '' }}"
                             href="{{ route('artigos.index') }}">Artigos</a>
                     </li>
@@ -207,10 +211,6 @@
                     <li class="w-full">
                         <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('contato') ? 'bg-refopClaro' : '' }}"
                             href="{{ url('/contato') }}">Contato</a>
-                    </li>
-                    <li class="w-full">
-                        <a class="block text-center text-white hover:bg-refopClaro px-3 py-3 font-semibold transition-colors duration-150 {{ Request::is('sobre') ? 'bg-refopClaro' : '' }}"
-                            href="{{ route('sobre.show') }}">Sobre</a>
                     </li>
                 </ul>
             </div>

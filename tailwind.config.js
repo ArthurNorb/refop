@@ -11,6 +11,10 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    safelist: [
+        'h-[60vh]',
+    ],
+
     theme: {
         extend: {
             fontFamily: {
@@ -26,5 +30,9 @@ export default {
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [
+        forms,
+        typography,
+        require('@tailwindcss/line-clamp')
+    ],
 };
