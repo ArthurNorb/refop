@@ -14,12 +14,10 @@
                 Por <span class="font-semibold">{{ $article->user->name }}</span> em {{ $article->created_at->translatedFormat('d \d\e F \d\e Y') }}
             </p>
 
-            {{-- Usamos a classe 'prose' do plugin de tipografia do Tailwind para formatar o conteúdo --}}
-            <div class="prose max-w-none text-gray-800">
+            <div class="prose max-w-none text-gray-800 break-words">
                 {!! $article->body !!}
             </div>
 
-            {{-- Ações de Edição/Exclusão --}}
             <div class="mt-8 pt-6 border-t flex gap-4">
                 @can('update', $article)
                     <a href="{{ route('artigos.edit', $article) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Editar</a>

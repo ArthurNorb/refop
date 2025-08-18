@@ -32,7 +32,7 @@
         @if ($republica->descricao)
             <div class="mt-8 pt-8 border-t border-gray-200">
                 <h2 class="text-xl font-bold text-gray-800 mb-2">Descrição</h2>
-                <p class="text-gray-700 whitespace-pre-wrap">{{ $republica->descricao }}</p>
+                <p class="text-gray-700 whitespace-pre-wrap break-words">{{ $republica->descricao }}</p>
             </div>
         @endif
 
