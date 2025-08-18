@@ -20,17 +20,23 @@
                             <div class="swiper-slide relative text-center text-white"
                                 style="background-image: url('{{ Storage::url($article->image_path) }}'); background-size: cover; background-position: center;">
 
-                                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                                <div
+                                    class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-6 sm:p-8">
 
-                                    <div class="relative z-10">
-                                        <h2 class="text-4xl md:text-5xl font-extrabold drop-shadow-lg mb-4">
-                                            {{ $article->title }}</h2>
-                                        <p class="text-lg drop-shadow-md mb-6 max-w-2xl mx-auto">{{ $article->excerpt }}</p>
-                                        <a href="{{ route('artigos.show', $article) }}"
-                                            class="inline-block bg-white text-refopEscuro font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-all text-base">
-                                            Ler Artigo
-                                        </a>
-                                    </div>
+                                    <h2 class="text-4xl md:text-5xl font-extrabold drop-shadow-lg flex-shrink-0">
+                                        {{ $article->title }}
+                                    </h2>
+
+                                    <p
+                                        class="text-lg drop-shadow-md my-6 max-w-2xl mx-auto flex-grow overflow-hidden line-clamp-4">
+                                        {{ $article->excerpt }}
+                                    </p>
+
+                                    <a href="{{ route('artigos.show', $article) }}"
+                                        class="inline-block bg-white text-refopEscuro font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-all text-base flex-shrink-0">
+                                        Ler Artigo
+                                    </a>
+
                                 </div>
                             </div>
                         @endforeach
